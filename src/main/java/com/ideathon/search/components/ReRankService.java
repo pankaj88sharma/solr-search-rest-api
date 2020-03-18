@@ -42,4 +42,19 @@ public class ReRankService {
 		}
 		return result;
 	}
+
+	public List<Prediction> getTrainApiResponse(String endPoint) {
+		List<Prediction> result = new ArrayList<>();
+		try {
+			Map<String, Object> uriVariables = new HashMap<>();
+			ResponseEntity<PredictionResponseModel> response = restTemplate.exchange(endPoint, HttpMethod.GET, null,
+					PredictionResponseModel.class, uriVariables);
+			if (response.getStatusCode() == HttpStatus.OK) {
+				result = response.getBody().getPredictions();
+			}
+		} catch (Exception e) {
+			logger.error("Exception while calling brand prediction api - {}", e);
+		}
+		return result;
+	}
 }
