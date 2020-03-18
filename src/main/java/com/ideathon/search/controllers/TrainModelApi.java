@@ -36,7 +36,7 @@ public class TrainModelApi {
 		String searchResponse = null;
 		try {
 			String endPoint = "http://" + brandTrainHost + brandTrainEndpoint;
-			reRankService.getTrainApiResponse(endPoint);
+			reRankService.callTrainApi(endPoint);
 			searchResponse = "Model training completed. Files dumped succesfully.";
 		} catch (Exception e) {
 			logger.error("Exception while calling train api - {}", e);
